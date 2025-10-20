@@ -1,47 +1,15 @@
 #include<algorithm>
 #include<iostream> 
 #include<vector> 
+#include "Shoe.h"
 
-class Shoe
-{
-public: 
-	std::string name; 
-	double price; 
-	int size; //ex 5 - 13
-	//sie_ starRating; 
-public: 
-	Shoe() = delete; 
-	Shoe(const std::string& name, const double price, const int size)
-		:name(name), price(price), size(size)
-	{
-
-	}
-
-	//5 > 4 //the > operator yields a bool (true or false)
-	//bool operator +  this can ALSO be done
-	/*@returns TRUE if "this" shoe's name comes before rhs's name in the alphabet*/
-	bool operator < (const Shoe& rhs) //Shoe s1; Shoe s2 if (s1 < s2)
-	{
-		//ambiguous: 
-		if (this->name < rhs.name)
-		{
-			return true; 
-		}
-
-		else
-		{
-			return false; 
-		}
-	}
-};
+//template //allow "generic" programming 
 
 int main()
 {
 	//WHY is this thing called "operator overloading" useful? 
 	//+/-* % ->operators 
 	// overloading a function ex: doSomething(3) doSomething(2, 3)
-
-
 
 	std::vector<int> nums =
 	{
@@ -50,30 +18,40 @@ int main()
 
 	std::sort(nums.begin(), nums.end()); 
 
-	for (const int& num : nums)
-	{
-		std::cout << num << " "; 
-	}
+	//for (const int& num : nums)
+	//{
+	//	std::cout << num << " "; 
+	//}
 
 	//make a dynamic array of shoes and THEN sort by various attributes (price, size)
-	Shoe hisShoe("your shoe name", 50.99, 12.5);
+	Shoe hisShoe("Adidas", 50.99, 12.5);
 	
-
 	std::vector<Shoe> shoeList =
 	{
-		Shoe("my shoe - Altra Olympus something or other", 89.99, 11.5),
+		Shoe("Altra Olympus V", 89.99, 11.5), 
 		hisShoe,
-		Shoe("converse Chuck Taylor All Star", 39.99, 7.5)
+		Shoe("Converse Chuck Taylor All Star", 39.99, 7.5) //an "anonymous" object
+												//"a girl has no name" (GoT reference)
 	};
 
 	//NOW sort!
 	std::sort(shoeList.begin(), shoeList.end()); //requires overloading < for Shoe type
-
+	//std::cout << "asdfadsf";
 	for (const auto& currentShoe : shoeList)
 	{
-		//std::cout << currentShoe << "\n";
+		std::cout << currentShoe;
 
-		std::cout << currentShoe.name << "\n";
+		//std::cout << currentShoe.name << "\n";
+	}
+
+	if (shoeList[0] == shoeList[1])
+	{
+		std::cout << "Shoes at indices 0 and 1 are the SAME shoe!\n";
+	}
+
+	else
+	{
+		std::cout << "NOT the same shoe :(";
 	}
 
 }
